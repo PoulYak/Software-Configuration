@@ -12,7 +12,7 @@ def preprocessString(s):
     result = []
     for i in range(len(s)):
         result.extend(s[i].split())
-    result[5] = datetime.datetime.fromtimestamp(int(result[5])).__str__()
+    # result[5] = datetime.datetime.fromtimestamp(int(result[5])).__str__()
     return result
 
 
@@ -22,9 +22,11 @@ def createGraph(graph, hist, path):
         print(current_branch)
         for line in file.readlines():
             line = preprocessString(line)
+
+            line[0] = line[0][:7]
+            line[1] = line[1][:7]
             print(line)
-            if line[7].startswith('commit'):
-                hist[line[0]] = hist.get(line[0], [])+[(line[1], line[2], line[3], line[5], " ".join(line[7:]))]
+            hist[line[0]] = hist.get(line[0], [])+[(line[1], line[2], line[3], line[5], " ".join(line[7:]))]
 
 
 
