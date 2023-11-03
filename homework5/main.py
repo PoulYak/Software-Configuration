@@ -4,6 +4,8 @@ import datetime
 
 path_commits = "../.git/logs/refs/heads"
 
+print(os.listdir(path_commits))
+
 
 def preprocessString(s):
     s = s.split("\t")
@@ -17,10 +19,12 @@ def preprocessString(s):
 def createGraph(graph, hist, path):
     with open(path, "r") as file:
         current_branch = os.path.basename(file.name)
+        print(current_branch)
         for line in file.readlines():
             line = preprocessString(line)
+            print(line)
             if line[7].startswith('commit'):
-                hist[line[0]] = hist.get(line[0], [])+[(line[1], line[2], line[3], line[5])]
+                hist[line[0]] = hist.get(line[0], [])+[(line[1], line[2], line[3], line[5], " ".join(line[7:]))]
 
 
 
@@ -33,8 +37,8 @@ if __name__ == "__main__":
         if os.path.isfile(f):
             createGraph(dot, tree, f)
 
-    for k, v in tree.items():
-        print(k, v)
+    # for k, v in tree.items():
+        # print(k, v)
     # dot.render(view=True)
 
 # for i in os.listdir("../.git/objects/61"):
