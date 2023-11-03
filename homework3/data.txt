@@ -1,0 +1,40 @@
+{
+    # это блок кода
+    # здесь можно создать переменные
+    subject = "Конфигурационное управление";
+    groups = for(1 35 1 "ИКБО-&-22");
+    student1 =
+    (
+        age(18)
+        group("ИКБО-02-22")
+        name("Петров Николай")
+    );
+    student2 =
+    (
+        age(17)
+        group("ИКБО-14-20")
+        name("Семенов Кузьма")
+    );
+    student3 =
+    (
+        age(25)
+        group("ИКБО-14-20")
+        name("Малоземов Александр")
+    );
+}
+
+(
+    groups(
+            &groups
+          )
+    students(
+            &student1
+            &student2
+            &student3
+        (
+            age(26) group("ИКБО-14-22") name("Семочкин Павел")
+        )
+    )
+subject(&subject)
+
+)
